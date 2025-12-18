@@ -1,11 +1,64 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Express Static</title>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>National Bunny Day 🐰✨</title>
     <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <h1>Hello from Express</h1>
-    <p>This file is being served!</p>
-  </body>
+    <link rel="stylesheet" href="extra.css">
+</head>
+<body>
+    <!-- Magical Background -->
+    <div class="background">
+        <canvas id="sparkleCanvas"></canvas>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-inner">
+            <h1>🐇 National Bunny Day! 🐇</h1>
+            <p>Jump into the fluffiest, cutest day ever!</p>
+        </div>
+        <nav class="nav-links" aria-label="Pages">
+            <a href="breeds.html">Breeds</a>
+            <a href="funfacts.html">Fun Facts</a>
+            <a href="morefunfacts.html">More Fun</a>
+        </nav>
+    </header>
+
+    <!-- Section 1: Bunny Gallery -->
+    <section class="bunny-gallery-section">
+        <h2>Meet the Bunnies!</h2>
+        <div class="bunny-gallery">
+            <img src="https://www.everypaw.com/.imaging/default/dam/all-things-pet/pregnancy-in-rabbits/pregnancy-in-rabbits.jpg/jcr:content.jpg" alt="Cute Bunny" class="bunny" data-color="pink">
+            <img src="https://www.medivetgroup.com/globalassets/assets/shutterstock-and-istock/shutterstock_645930832.png?w=585&scale=down" alt="Cute Bunny" class="bunny" data-color="blue">
+            <img src="https://blog.petloverscentre.com/wp-content/uploads/2025/01/Rabbit-Breeds.png" alt="Cute Bunny" class="bunny" data-color="purple">
+            <img src="https://m.media-amazon.com/images/I/71wWEpYe7bL._AC_UF894,1000_QL80_.jpg" alt="Cute Bunny" class="bunny" data-color="yellow">
+        </div>
+    </section>
+
+    <!-- Section 2: Bunny Fun Zone -->
+    <section class="interactive-section">
+        <h2>Give Bunnies Some Carrots!</h2>
+        <button id="carrotButton">Give Bunny a Carrot 🥕</button>
+        <p id="reaction">Bunnies are waiting for carrots...</p>
+    </section>
+
+    <!-- Section 3: Bunny Parade -->
+    <section class="parade-section">
+        <h2>Bunny Parade!</h2>
+        <div class="parade">
+            <img src="https://www.rd.com/wp-content/uploads/2021/04/GettyImages-476744133-scaled.jpg" alt="Bunny" class="parade-bunny" data-speed="5">
+            <img src="https://pethelpful.com/.image/w_3840,q_auto:good,c_limit/NDowMDAwMDAwMDAwMDkwMTM1/two-brown-bunnies-in-grass-daisies.jpg?arena_f_auto" alt="Bunny" class="parade-bunny" data-speed="3">
+            <img src="https://www.taiyogroup.in/wp-content/uploads/2022/04/Rabbits.jpg" alt="Bunny" class="parade-bunny" data-speed="4">
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Made with 💖 for all bunny lovers</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
 </html>

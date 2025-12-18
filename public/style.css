@@ -1,4 +1,707 @@
+/* ==========================================================
+   NATIONAL BUNNY DAY — ABSOLUTELY UNHINGED CSS
+   Cute. Animated. Centered. Scrollable. Magical.
+   ========================================================== */
+
+
+/* ===================== RESET ===================== */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* ===================== ROOT VARIABLES ===================== */
+:root {
+    --pink-main: #ffb6c1;
+    --pink-hot: #ff69b4;
+    --pink-soft: #ffd1dc;
+    --lavender: #e6d9ff;
+    --cream: #fff0f5;
+    --white: #ffffff;
+
+    --shadow-glow: 0 0 20px rgba(255,105,180,0.6);
+    --shadow-soft: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+
+/* ===================== BODY ===================== */
 body {
-  font-family: Arial, sans-serif;
-  background: #f4f4f4;
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at top, var(--cream), var(--pink-soft)),
+        linear-gradient(120deg, var(--pink-soft), var(--cream));
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    color: #333;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    position: relative;
+}
+
+
+/* ===================== BACKGROUND CANVAS ===================== */
+.background {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+}
+
+
+/* ===================== HEADER ===================== */
+header {
+    min-height: 70vh;
+    padding: 6rem 1rem 4rem;
+    text-align: center;
+
+    background:
+        linear-gradient(135deg,
+            var(--pink-main),
+            var(--pink-hot),
+            var(--lavender));
+
+    border-bottom-left-radius: 50% 18%;
+    border-bottom-right-radius: 50% 18%;
+    box-shadow: var(--shadow-soft);
+}
+
+header h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    color: var(--white);
+    text-shadow:
+        3px 3px var(--pink-hot),
+        0 0 30px var(--cream);
+    animation: glowPulse 3s infinite alternate;
+}
+
+header p {
+    margin-top: 1.5rem;
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+    color: var(--white);
+    text-shadow: 0 0 10px var(--cream);
+    animation: shimmer 4s infinite;
+}
+
+
+/* ===================== SECTIONS ===================== */
+section {
+    min-height: 80vh;
+    padding: 6rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+section h2 {
+    font-size: clamp(2.2rem, 4vw, 3rem);
+    margin-bottom: 3rem;
+    color: var(--pink-hot);
+    text-shadow: 2px 2px var(--white);
+}
+
+
+/* ===================== BUNNY GALLERY ===================== */
+.bunny-gallery {
+    max-width: 1400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4rem;
+    margin: 0 auto;
+}
+
+.bunny {
+    width: 200px;
+    max-width: 25vw;
+    display: block;
+    cursor: pointer;
+
+    animation:
+        float 3.5s ease-in-out infinite,
+        wiggle 5s infinite alternate;
+
+    transition:
+        transform 0.4s ease,
+        filter 0.4s ease;
+}
+
+.bunny:hover {
+    transform: scale(1.6) translateY(-15px) rotate(-6deg);
+    filter:
+        drop-shadow(0 0 25px var(--pink-hot))
+        brightness(1.1);
+}
+
+
+/* ===================== BUNNY COLOR VARIANTS ===================== */
+.bunny[data-color="pink"]     { filter: hue-rotate(0deg); }
+.bunny[data-color="blue"]     { filter: hue-rotate(200deg); }
+.bunny[data-color="purple"]   { filter: hue-rotate(280deg); }
+.bunny[data-color="yellow"]   { filter: hue-rotate(50deg); }
+.bunny[data-color="green"]    { filter: hue-rotate(110deg); }
+.bunny[data-color="orange"]   { filter: hue-rotate(30deg); }
+.bunny[data-color="cyan"]     { filter: hue-rotate(180deg); }
+.bunny[data-color="lavender"] { filter: hue-rotate(320deg); }
+
+
+/* ===================== INTERACTIVE SECTION ===================== */
+.interactive-section button {
+    padding: 1.4rem 3.5rem;
+    font-size: 1.6rem;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+
+    background:
+        linear-gradient(45deg,
+            #ffa07a,
+            #ff69b4,
+            #ffd1dc);
+
+    color: white;
+    box-shadow: var(--shadow-soft);
+
+    animation:
+        buttonBounce 2.5s infinite,
+        rainbowGlow 6s infinite;
+}
+
+.interactive-section button:hover {
+    transform: scale(1.35) rotate(-5deg);
+}
+
+#reaction {
+    margin-top: 2rem;
+    font-size: 1.6rem;
+    color: var(--pink-hot);
+    text-shadow: 0 0 15px var(--white);
+    animation: shimmer 3s infinite;
+}
+
+
+/* ===================== PARADE SECTION ===================== */
+.parade {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6rem;
+    overflow: hidden;
+}
+
+.parade-bunny {
+    width: 160px;
+    animation:
+        paradeMove linear infinite,
+        wiggle 4s infinite alternate;
+}
+
+
+/* ===================== FALLING CARROTS ===================== */
+.carrot {
+    position: fixed;
+    top: -60px;
+    width: 50px;
+    height: 50px;
+    background-image: url("https://i.imgur.com/0M1x0rB.png");
+    background-size: cover;
+    pointer-events: none;
+    z-index: 999;
+    animation:
+        carrotFall linear,
+        carrotSway 3s ease-in-out infinite;
+}
+
+
+/* ===================== DECORATIVE ELEMENTS ===================== */
+.cloud,
+.star,
+.heart,
+.sparkle {
+    position: absolute;
+    opacity: 0.8;
+    animation: floatSlow 12s linear infinite;
+}
+
+.star {
+    width: 10px;
+    height: 10px;
+    background: yellow;
+    clip-path: polygon(
+        50% 0%,
+        61% 35%,
+        98% 35%,
+        68% 57%,
+        79% 91%,
+        50% 70%,
+        21% 91%,
+        32% 57%,
+        2% 35%,
+        39% 35%
+    );
+}
+
+.heart {
+    width: 20px;
+    height: 20px;
+    background: red;
+    transform: rotate(45deg);
+}
+
+.heart::before,
+.heart::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: red;
+    border-radius: 50%;
+}
+
+.heart::before { top: -10px; }
+.heart::after  { left: -10px; }
+
+
+/* ===================== FOOTER ===================== */
+footer {
+    padding: 4rem 1rem;
+    text-align: center;
+    background:
+        linear-gradient(135deg,
+            var(--pink-main),
+            var(--pink-hot));
+    color: white;
+    font-size: 1.2rem;
+    box-shadow: var(--shadow-soft);
+}
+
+
+/* ===================== ANIMATIONS ===================== */
+@keyframes float {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(-25px); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes wiggle {
+    0%   { transform: rotate(0deg); }
+    25%  { transform: rotate(-3deg); }
+    50%  { transform: rotate(3deg); }
+    75%  { transform: rotate(-3deg); }
+    100% { transform: rotate(0deg); }
+}
+
+@keyframes glowPulse {
+    from { text-shadow: 0 0 15px var(--pink-hot); }
+    to   { text-shadow: 0 0 40px var(--cream); }
+}
+
+@keyframes shimmer {
+    0%   { opacity: 0.8; }
+    50%  { opacity: 1; }
+    100% { opacity: 0.8; }
+}
+
+@keyframes paradeMove {
+    from { transform: translateX(-200px); }
+    to   { transform: translateX(100vw); }
+}
+
+@keyframes carrotFall {
+    from { transform: translateY(-60px); }
+    to   { transform: translateY(110vh); }
+}
+
+@keyframes carrotSway {
+    0%   { transform: translateX(0); }
+    50%  { transform: translateX(20px); }
+    100% { transform: translateX(0); }
+}
+
+@keyframes buttonBounce {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.12); }
+    100% { transform: scale(1); }
+}
+
+@keyframes rainbowGlow {
+    0%   { box-shadow: 0 0 10px #ff69b4; }
+    50%  { box-shadow: 0 0 25px #ffd1dc; }
+    100% { box-shadow: 0 0 10px #ff69b4; }
+}
+
+@keyframes floatSlow {
+    from { transform: translateY(0); }
+    to   { transform: translateY(-40px); }
+}
+
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 768px) {
+    .bunny {
+        width: 140px;
+    }
+
+    .parade-bunny {
+        width: 110px;
+    }
+}
+
+/* ==========================================================
+   NATIONAL BUNNY DAY — ABSOLUTELY UNHINGED CSS
+   Cute. Animated. Centered. Scrollable. Magical.
+   ========================================================== */
+
+
+/* ===================== RESET ===================== */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* ===================== ROOT VARIABLES ===================== */
+:root {
+    --pink-main: #ffb6c1;
+    --pink-hot: #ff69b4;
+    --pink-soft: #ffd1dc;
+    --lavender: #e6d9ff;
+    --cream: #fff0f5;
+    --white: #ffffff;
+
+    --shadow-glow: 0 0 20px rgba(255,105,180,0.6);
+    --shadow-soft: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+
+/* ===================== BODY ===================== */
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at top, var(--cream), var(--pink-soft)),
+        linear-gradient(120deg, var(--pink-soft), var(--cream));
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    color: #333;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    position: relative;
+}
+
+
+/* ===================== BACKGROUND CANVAS ===================== */
+.background {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+}
+
+
+/* ===================== HEADER ===================== */
+header {
+    min-height: 70vh;
+    padding: 6rem 1rem 4rem;
+    text-align: center;
+
+    background:
+        linear-gradient(135deg,
+            var(--pink-main),
+            var(--pink-hot),
+            var(--lavender));
+
+    border-bottom-left-radius: 50% 18%;
+    border-bottom-right-radius: 50% 18%;
+    box-shadow: var(--shadow-soft);
+}
+
+header h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    color: var(--white);
+    text-shadow:
+        3px 3px var(--pink-hot),
+        0 0 30px var(--cream);
+    animation: glowPulse 3s infinite alternate;
+}
+
+header p {
+    margin-top: 1.5rem;
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+    color: var(--white);
+    text-shadow: 0 0 10px var(--cream);
+    animation: shimmer 4s infinite;
+}
+
+
+/* ===================== SECTIONS ===================== */
+section {
+    min-height: 80vh;
+    padding: 6rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+section h2 {
+    font-size: clamp(2.2rem, 4vw, 3rem);
+    margin-bottom: 3rem;
+    color: var(--pink-hot);
+    text-shadow: 2px 2px var(--white);
+}
+
+
+/* ===================== BUNNY GALLERY ===================== */
+.bunny-gallery {
+    max-width: 1400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4rem;
+    margin: 0 auto;
+}
+
+.bunny {
+    width: 200px;
+    max-width: 25vw;
+    display: block;
+    cursor: pointer;
+
+    animation:
+        float 3.5s ease-in-out infinite,
+        wiggle 5s infinite alternate;
+
+    transition:
+        transform 0.4s ease,
+        filter 0.4s ease;
+}
+
+.bunny:hover {
+    transform: scale(1.6) translateY(-15px) rotate(-6deg);
+    filter:
+        drop-shadow(0 0 25px var(--pink-hot))
+        brightness(1.1);
+}
+
+
+/* ===================== BUNNY COLOR VARIANTS ===================== */
+.bunny[data-color="pink"]     { filter: hue-rotate(0deg); }
+.bunny[data-color="blue"]     { filter: hue-rotate(200deg); }
+.bunny[data-color="purple"]   { filter: hue-rotate(280deg); }
+.bunny[data-color="yellow"]   { filter: hue-rotate(50deg); }
+.bunny[data-color="green"]    { filter: hue-rotate(110deg); }
+.bunny[data-color="orange"]   { filter: hue-rotate(30deg); }
+.bunny[data-color="cyan"]     { filter: hue-rotate(180deg); }
+.bunny[data-color="lavender"] { filter: hue-rotate(320deg); }
+
+
+/* ===================== INTERACTIVE SECTION ===================== */
+.interactive-section button {
+    padding: 1.4rem 3.5rem;
+    font-size: 1.6rem;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+
+    background:
+        linear-gradient(45deg,
+            #ffa07a,
+            #ff69b4,
+            #ffd1dc);
+
+    color: white;
+    box-shadow: var(--shadow-soft);
+
+    animation:
+        buttonBounce 2.5s infinite,
+        rainbowGlow 6s infinite;
+}
+
+.interactive-section button:hover {
+    transform: scale(1.35) rotate(-5deg);
+}
+
+#reaction {
+    margin-top: 2rem;
+    font-size: 1.6rem;
+    color: var(--pink-hot);
+    text-shadow: 0 0 15px var(--white);
+    animation: shimmer 3s infinite;
+}
+
+
+/* ===================== PARADE SECTION ===================== */
+.parade {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6rem;
+    overflow: hidden;
+}
+
+.parade-bunny {
+    width: 160px;
+    animation:
+        paradeMove linear infinite,
+        wiggle 4s infinite alternate;
+}
+
+
+/* ===================== FALLING CARROTS ===================== */
+.carrot {
+    position: fixed;
+    top: -60px;
+    width: 50px;
+    height: 50px;
+    background-image: url("https://i.imgur.com/0M1x0rB.png");
+    background-size: cover;
+    pointer-events: none;
+    z-index: 999;
+    animation:
+        carrotFall linear,
+        carrotSway 3s ease-in-out infinite;
+}
+
+
+/* ===================== DECORATIVE ELEMENTS ===================== */
+.cloud,
+.star,
+.heart,
+.sparkle {
+    position: absolute;
+    opacity: 0.8;
+    animation: floatSlow 12s linear infinite;
+}
+
+.star {
+    width: 10px;
+    height: 10px;
+    background: yellow;
+    clip-path: polygon(
+        50% 0%,
+        61% 35%,
+        98% 35%,
+        68% 57%,
+        79% 91%,
+        50% 70%,
+        21% 91%,
+        32% 57%,
+        2% 35%,
+        39% 35%
+    );
+}
+
+.heart {
+    width: 20px;
+    height: 20px;
+    background: red;
+    transform: rotate(45deg);
+}
+
+.heart::before,
+.heart::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: red;
+    border-radius: 50%;
+}
+
+.heart::before { top: -10px; }
+.heart::after  { left: -10px; }
+
+
+/* ===================== FOOTER ===================== */
+footer {
+    padding: 4rem 1rem;
+    text-align: center;
+    background:
+        linear-gradient(135deg,
+            var(--pink-main),
+            var(--pink-hot));
+    color: white;
+    font-size: 1.2rem;
+    box-shadow: var(--shadow-soft);
+}
+
+
+/* ===================== ANIMATIONS ===================== */
+@keyframes float {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(-25px); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes wiggle {
+    0%   { transform: rotate(0deg); }
+    25%  { transform: rotate(-3deg); }
+    50%  { transform: rotate(3deg); }
+    75%  { transform: rotate(-3deg); }
+    100% { transform: rotate(0deg); }
+}
+
+@keyframes glowPulse {
+    from { text-shadow: 0 0 15px var(--pink-hot); }
+    to   { text-shadow: 0 0 40px var(--cream); }
+}
+
+@keyframes shimmer {
+    0%   { opacity: 0.8; }
+    50%  { opacity: 1; }
+    100% { opacity: 0.8; }
+}
+
+@keyframes paradeMove {
+    from { transform: translateX(-200px); }
+    to   { transform: translateX(100vw); }
+}
+
+@keyframes carrotFall {
+    from { transform: translateY(-60px); }
+    to   { transform: translateY(110vh); }
+}
+
+@keyframes carrotSway {
+    0%   { transform: translateX(0); }
+    50%  { transform: translateX(20px); }
+    100% { transform: translateX(0); }
+}
+
+@keyframes buttonBounce {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.12); }
+    100% { transform: scale(1); }
+}
+
+@keyframes rainbowGlow {
+    0%   { box-shadow: 0 0 10px #ff69b4; }
+    50%  { box-shadow: 0 0 25px #ffd1dc; }
+    100% { box-shadow: 0 0 10px #ff69b4; }
+}
+
+@keyframes floatSlow {
+    from { transform: translateY(0); }
+    to   { transform: translateY(-40px); }
+}
+
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 768px) {
+    .bunny {
+        width: 140px;
+    }
+
+    .parade-bunny {
+        width: 110px;
+    }
 }
